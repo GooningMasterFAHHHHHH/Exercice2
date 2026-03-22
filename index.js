@@ -52,3 +52,19 @@ app.get('/api/pokemon/:id',(req,res)=>{
     res.send('ERREUR 404')
   }
 })
+
+//Pokemon par Type
+app.get('/api/type/:type' ,(req,res)=>{
+  var TYPE = req.params.type.toLowerCase()
+ 
+  var saltype = pokedex.filter(p => p.type == TYPE)
+
+  res.send(saltype)
+})
+
+//Pokemon par lettre
+app.get('/api/search' ,(req,res)=>{
+  var lettres = req.query.name.toLowerCase()
+
+  res.send(pokedex.filter(p => p.name.toLowerCase().includes(lettres)))
+})
