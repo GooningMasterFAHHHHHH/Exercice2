@@ -53,7 +53,7 @@ app.get('/api/pokemon/:id',(req,res)=>{
   }
 })
 
-//Pokemon par Type
+// par Type
 app.get('/api/type/:type' ,(req,res)=>{
   var TYPE = req.params.type.toLowerCase()
  
@@ -62,9 +62,19 @@ app.get('/api/type/:type' ,(req,res)=>{
   res.send(saltype)
 })
 
-//Pokemon par lettre
+// par lettre
 app.get('/api/search' ,(req,res)=>{
   var lettres = req.query.name.toLowerCase()
 
   res.send(pokedex.filter(p => p.name.toLowerCase().includes(lettres)))
+})
+
+
+// par Niveau
+app.get('/api/level/:min' ,(req,res)=>{
+  var niveau = req.params.min
+
+  var eligible = pokedex.filter(p => p.level >= niveau)
+
+  res.send(eligible)
 })
